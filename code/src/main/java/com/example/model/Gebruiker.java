@@ -1,12 +1,13 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gebruiker {
     private String naam;
     private String gebruikerNaam;
-    private List<Playlist> playlists;
-    private List<Bericht> berichten;
+    private List<Playlist> playlists = new ArrayList<Playlist>();
+    private List<Bericht> berichten = new ArrayList<Bericht>();
     private int id;
     private String password; //dit voelt sws fout
 

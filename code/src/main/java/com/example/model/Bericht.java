@@ -1,9 +1,10 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bericht {
-    private List<Gebruiker> likes;
+    private List<Gebruiker> likes = new ArrayList<Gebruiker>();
     private String text;
     private Nummer muziek;
     private int id;

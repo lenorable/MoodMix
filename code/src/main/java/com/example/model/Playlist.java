@@ -1,11 +1,12 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
     private Gebruiker maker;
     private String naam;
-    private List<Nummer> nummers;
+    private List<Nummer> nummers = new ArrayList<Nummer>();
 
     public Playlist(Gebruiker maker, String naam) {
         this.maker = maker;
