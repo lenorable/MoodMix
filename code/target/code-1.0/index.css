@@ -1,0 +1,18 @@
+body{
+    background-color: #FEE5B6;
+}
+
+.quizdiv{
+    background-color: #90AE6E;
+    position: absolute;
+    border-radius: 20vh;
+}
+
+@media screen and (min-width: 600px) {
+    .quizdiv{
+        width: 80%;
+        height: 90%;
+        left: 10%;
+        top: 5%;
+    }
+}
