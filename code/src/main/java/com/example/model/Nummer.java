@@ -1,8 +1,12 @@
 package com.example.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Nummer {
+import com.example.manager.PersistenceManager;
+
+public class Nummer implements Serializable{
     private String naam;
     private String maker;
     private double lengte; //dit kan mis als local time? kom ik later op terug! 
@@ -15,6 +19,7 @@ public class Nummer {
         this.lengte = lengte;
         this.bestandnaam = bestandnaam;
         this.gevoelens = gevoelens;
+        // PersistenceManager.saveMusic(PersistenceManager.updateMusicListSingle(this)); //adding this number to the existing list and saving it
     }
 
     public String getNaam() {
@@ -31,6 +36,10 @@ public class Nummer {
 
     public List<Gevoel> getGevoelens() {
         return gevoelens;
+    }
+
+    public String getBestandNaam(){
+        return bestandnaam;
     }
 
 }

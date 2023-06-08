@@ -67,5 +67,7 @@ function quizResult(){ //proty type. weet nog niet of ik dit zo ga houden
         index += 1;
     });
 
+    localStorage.setItem("feeling", product); //nu nog voor eeuwig?
+
     return product;
 }
