@@ -10,7 +10,7 @@ public class AlgemeneTest {
     Gevoel v1 = new Gevoel("Blij");
     Gevoel v2 = new Gevoel("Boos");
 
-    Gebruiker g1 = new Gebruiker("Lenor", "lenorable", 0, "qwerty", "user");
+    Gebruiker g1 = new Gebruiker("lenorable", "user");
 
     Playlist p1 = new Playlist(g1, "coolste playlist");
 

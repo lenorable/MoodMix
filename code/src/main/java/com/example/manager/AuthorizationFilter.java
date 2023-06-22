@@ -33,7 +33,7 @@ public class AuthorizationFilter implements ContainerRequestFilter{
                 
                 String userName = claims.getSubject();
                 
-                for (Gebruiker user : Gebruiker.getAllGebruikers()) {
+                for (Gebruiker user : Gebruiker.alleGebruikers) {
                     if (user.getName().equals(userName)){
                         MySecurityContext msc = new MySecurityContext(user);
                         requestContext.setSecurityContext(msc);

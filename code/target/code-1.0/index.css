@@ -1,39 +1,73 @@
-body{
-    background-color: #FEE5B6;
-}
-
 .quizdiv{
     background-color: #90AE6E;
-    position: absolute;
-    border-radius: 20px;
+    /* display: flex; */
+    border-radius: 10vh;
+    grid-row: 2/12;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputBox{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 10%;
+    z-index: 1;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    padding: 4px;
+    margin: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.smallBox{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 50%;
+    z-index: 1;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    padding: 4px;
+    margin: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smallBox input {
+    width: 50%;
+}
+
+.smallBox * {
+    margin: 2%;
+}
+
+/* phone */
+@media screen and (max-width: 767px) { 
+    .quizdiv{
+        grid-column: 2/12;
+    }
+}
+
+/* tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) { 
+    .quizdiv{
+        grid-column: 4/10;
+    }
 }
 
 /* PC or laptop */
 @media screen and (min-width: 1024px) { 
     .quizdiv{
-        width: 40%;
-        height: 90%;
-        left: 30%;
-        top: 5%;
-    }
-}
-
-/* tablet */
-@media screen and (min-width: 768px) and (max-width: 1023) { 
-    .quizdiv{
-        width: 50%;
-        height: 90%;
-        left: 25%;
-        top: 5%;
-    }
-}
-
-/* phone */
-@media screen and (max-width: 767) { 
-    .quizdiv{
-        width: 50%;
-        height: 90%;
-        left: 25%;
-        top: 5%;
+        grid-column: 5/9;
     }
 }

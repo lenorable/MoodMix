@@ -1,0 +1,75 @@
+.controlbody{
+    background-color: rgb(247, 202, 164);
+    border-radius: 5vh;
+    z-index: 1;
+    overflow: hidden;
+    border: none;
+    padding: 0px;
+    grid-column: 3/11;
+    grid-row: 2/12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.infodiv{
+    background-color: rgb(255, 0, 0);
+    border-radius: none;
+    z-index: 2;
+    overflow: hidden;
+    border: none;
+    padding: 0px;
+    margin-left: 20.835%;
+    margin-top: 8vh;
+}
+
+.controlButtonsdiv{
+    background-color: rgba(0, 0, 255, 0);
+    border-radius: none;
+    z-index: 2;
+    border: none;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+}
+
+.controlButtonsdiv button{
+    background-color: rgb(149, 173, 117);
+    position: relative;
+    border-radius: 50%;
+    z-index: 2;
+    overflow: hidden;
+    border: none;
+    padding: 0px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    float: none;
+    margin: 2.5%;
+    font-size: large;
+    cursor: pointer;
+}
+
+.controlButtonsdiv button * {
+    float: none;
+}
+
+.controlButtonsdiv button:hover {
+    background-color: rgb(116, 134, 90);
+}
+
+.volsliderdiv{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: none;
+    z-index: 2;
+    overflow: visible;
+    border: none;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    height: 10%;
+    width: 80%;
+}

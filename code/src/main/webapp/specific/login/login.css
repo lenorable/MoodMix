@@ -1,0 +1,73 @@
+.form {
+    background-color: rgb(149, 173, 117);
+    grid-row: 2/12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10vh;
+    overflow: hidden;
+
+    -webkit-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+}
+
+/* phone */
+@media screen and (max-width: 767px) { 
+    .form{
+        grid-column: 2/12;
+    }
+}
+
+/* tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) { 
+    .form{
+        grid-column: 4/10;
+    }
+}
+
+/* PC or laptop */
+@media screen and (min-width: 1024px) { 
+    .form{
+        grid-column: 5/9;
+    }
+}
+
+.form * {
+    background-color: white;
+    width: 80%;
+    height: 10%;
+    border-radius: 4vh;
+    z-index: 1;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    padding: 4px;
+    margin: 5px;
+}
+
+.buttoncontainer{
+    background-color: transparent;
+    overflow: visible;
+    padding: 0%;
+    justify-content: center;
+}
+
+.form button{
+    width: 45%;
+    height: 100%;
+    border-radius: 4vh;
+    z-index: 1;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    padding: 4px;
+    margin: 0px;
+}
+
+#emailid{
+    height: 0%;
+    padding: 0px;
+    margin: 0px;
+}

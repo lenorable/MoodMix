@@ -22,14 +22,6 @@ class ReqGevoel {
 
 @Path("/music")
 public class MusicResource {
-
-    // @GET
-    //// @RolesAllowed("admin")
-    // @Produces(MediaType.APPLICATION_JSON) //alleen als je ook iets terug stuurt
-    // public Response hmmm() {
-    // return Response.ok().build();
-    // }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
     @Produces(MediaType.APPLICATION_JSON)

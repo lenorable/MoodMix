@@ -5,28 +5,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.management.relation.Role;
-
 public class Gebruiker implements Principal{
-    private String naam;
     private String gebruikerNaam;
     private List<Playlist> playlists = new ArrayList<Playlist>();
     private List<Bericht> berichten = new ArrayList<Bericht>();
 
-    private int id;
-    private String password; //dit voelt sws fout
     private String role;
 
-    private static List<Gebruiker> allGebruikers = new ArrayList<>();
+    public static List<Gebruiker> alleGebruikers = new ArrayList<>();
 
-    public Gebruiker(String naam, String gebruikerNaam, int id, String password, String role){
-        this.naam = naam;
+    public Gebruiker(String gebruikerNaam, String role){
         this.gebruikerNaam = gebruikerNaam;
-        this.id = id;
-        this.password = password;
+
         this.role = role;
 
-        allGebruikers.add(this);
+        alleGebruikers.add(this);
     }
 
     public String getGebruikerNaam() {
@@ -49,10 +42,6 @@ public class Gebruiker implements Principal{
         return role;
     }
 
-    public static List<Gebruiker> getAllGebruikers() {
-        return Collections.unmodifiableList(allGebruikers);
-    }
-
     public String addPlaylists(Playlist playlist){
         try {
             playlists.add(playlist);
@@ -69,10 +58,6 @@ public class Gebruiker implements Principal{
         } catch (Exception e){
             return e.getMessage();
         }
-    }
-
-    public boolean checkPassword(String pass){
-        return pass.equals(this.password);
     }
 }
 

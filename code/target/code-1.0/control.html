@@ -6,15 +6,28 @@
     <meta name="author" content="Lenor Hofschreuder" />
 
     <title>MM music</title>
-    <link rel="stylesheet" href="control.css">
-    <script src="control.js"></script>
+    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="specific/control/control.css">
+    <script src="specific/control/control.js"></script>
 
     <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
 </head>
 
 <body>
-    <div class="innerBody">
+    <div class="grid">
+        <div class="controlbody">
+            <div class="infodiv"></div>
+            <div class="controlButtonsdiv">
+                <button onclick="togglePause(this)"><i class='fa-solid fa-play'></i></button>
+                <button onclick="loopSong(this)"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+            </div>
+            <div class="volsliderdiv">
+                <input type="range" value="100" onchange="songVolume(this)">
+            </div>
+        </div>
+    </div>
+    <!-- <div class="innerBody">
         <div class="controlbody col-6 row-10">
             <div class="infodiv col-7 row-6"></div>
             <div class="controlButtonsdiv col-8 row-2">
@@ -25,7 +38,7 @@
                 <input type="range" value="100" onchange="songVolume(this)">
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
 
 </html>

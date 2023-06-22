@@ -16,15 +16,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.postgresql.Driver;
+
 import com.example.model.Gebruiker;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
+@JsonIgnoreProperties
 class loginRequest {
     public String username;
     public String password;
+    public String email;
 }
 
 @Path("/login")
@@ -40,32 +45,34 @@ public class AuthenticationResource {
     public Response login(loginRequest req) {
 
         try {
+            DriverManager.registerDriver(new Driver());
 
-            // Connection successful, perform database operations here
             Connection connection = DriverManager.getConnection(URL, username, password);
-            System.out.println("Connected to the PostgreSQL database!");
 
             Statement statement = connection.createStatement();
 
-            String query = "SELECT password FROM MoodMixUsers WHERE username LIKE '" + req.username +"';"; // get password where username = ?
+            String query = "SELECT password FROM MoodMixUsers WHERE username LIKE '" + req.username + "';";
             ResultSet resultSet = statement.executeQuery(query);
 
+            String passDB;
+
             while (resultSet.next()) {
-                String val1 = resultSet.getString("password");
-                System.out.println(val1);
-            }
+                passDB = resultSet.getString("password");
 
-            for (Gebruiker gebruiker : Gebruiker.getAllGebruikers()) {
-                if (gebruiker.getGebruikerNaam().equals(req.username) && gebruiker.checkPassword(req.password)) {
+                if (passDB.equals(req.password)) {
+                    for (Gebruiker gebruiker : Gebruiker.alleGebruikers) {
+                        if (gebruiker.getGebruikerNaam().equals(req.username)) {
+                            Calendar expires = Calendar.getInstance();
+                            expires.add(Calendar.HOUR, 2);
 
-                    Calendar expires = Calendar.getInstance();
-                    expires.add(Calendar.HOUR, 2);
-
-                    String token = Jwts.builder().setSubject(req.username).setExpiration(expires.getTime())
-                            .signWith(SignatureAlgorithm.HS512, key).compact();
-                    return Response.ok(Map.of("token", token)).build();
+                            String token = Jwts.builder().setSubject(req.username).setExpiration(expires.getTime())
+                                    .signWith(SignatureAlgorithm.HS512, key).compact();
+                            return Response.ok(Map.of("token", token)).build();
+                        }
+                    }
                 }
             }
+
             return Response.status(406).build();
         } catch (SQLException e) {
             return Response.status(503, e.getMessage()).build();
@@ -74,41 +81,36 @@ public class AuthenticationResource {
         }
     }
 
-    // @POST
-    // @Path("/new")
-    // @Consumes(MediaType.APPLICATION_JSON)
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response makeUser(){
-    //     try {
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response makeUser(loginRequest req) {
+        try {
 
-    //         // Connection successful, perform database operations here
-    //         Connection connection = DriverManager.getConnection(URL, username, password);
-    //         System.out.println("Connected to the PostgreSQL database!");
+            DriverManager.registerDriver(new Driver());
 
-    //         Statement statement = connection.createStatement();
+            Connection connection = DriverManager.getConnection(URL, username, password);
 
-    //         String query = "SELECT password FROM MoodMixUsers WHERE username LIKE '" + req.username +"';"; // get password where username = ?
-    //         ResultSet resultSet = statement.executeQuery(query);
+            Statement statement = connection.createStatement();
 
-    //         while (resultSet.next()) {
-    //             String val1 = resultSet.getString("password");
-    //             System.out.println(val1);
-    //         }
+            String query = "SELECT username FROM MoodMixUsers WHERE username = '" + req.username + "';";
 
-    //         for (Gebruiker gebruiker : Gebruiker.getAllGebruikers()) {
-    //             if (gebruiker.getGebruikerNaam().equals(req.username) && gebruiker.checkPassword(req.password)) {
+            ResultSet resultSet = statement.executeQuery(query);
 
-    //                 Calendar expires = Calendar.getInstance();
-    //                 expires.add(Calendar.HOUR, 2);
+            if (resultSet.next()){
+                return Response.status(409).build();
+            } else {
+                query = " INSERT INTO moodmixusers (username, password, email) VALUES ('" + req.username + "', '" + req.password + "', '" + req.email + "');";
+                statement.execute(query);
+                Gebruiker user = new Gebruiker(req.username, req.password);
+                return login(req);
+            }
 
-    //                 String token = Jwts.builder().setSubject(req.username).setExpiration(expires.getTime())
-    //                         .signWith(SignatureAlgorithm.HS512, key).compact();
-    //                 return Response.ok(Map.of("token", token)).build();
-    //             }
-    //         }
-    //         return Response.status(406).build();
-    //     } catch (SQLException e) {
-    //         return Response.status(503, e.getMessage()).build();
-    //     }
-    // }
+        } catch (SQLException e) {
+            return Response.status(503, e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(500, e.getMessage()).build();
+        }
+    }
 }

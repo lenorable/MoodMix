@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-NL">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="author" content="Lenor Hofschreuder" />
 
-        <title>MoodMix login</title>
-        <link rel="stylesheet" href="login.css">
-        <script src="login.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lenor Hofschreuder" />
 
-        <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <input type="text" id="usernameid" placeholder="your username"></input>
-        <input type="password" id="passwordid" placeholder="your password"></input>
-        <button onclick="login()">login</button>
-    </body>
+    <title>MoodMix login</title>
+    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="specific/login/login.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
+    <script src="specific/login/login.js" type="module"></script>
+</head>
+
+<body>
+    <div class="grid">
+        <form class="form" action="" id="form">
+            <input type="email" id="emailid" placeholder="your email" tabindex="-1"></input>
+            <input type="text" id="usernameid" placeholder="your username" required></input>
+            <input type="password" id="passwordid" placeholder="your password" required></input>
+            <div class="buttoncontainer">
+                <!-- onclick="login()" -->
+                <button type="submit" style="float: left;">submit</button>
+                <button type="button" onclick="makeacc(event)" style="float: right;">new acc</button>
+            </div>
+        </form>
+    </div>
+</body>
+
 </html>
