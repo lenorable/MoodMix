@@ -6,31 +6,25 @@
     <meta name="author" content="Lenor Hofschreuder" />
 
     <title>MM recommended</title>
+    <link rel="stylesheet" href="basic.css">
     <link rel="stylesheet" href="specific/recommended/recommended.css">
-    <script src="specific/recommended/recommended.js"></script>
+    <script src="specific/recommended/recommended.js" type="module"></script>
 
     <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
 </head>
 
 <body>
-    <div class="innerBody">
-        <!-- <div class="filler col-1"></div> -->
-        <div class="side col-6 row-12"></div>
-        <div class="side col-6 row-12">
-            <div class="menubar col-12 row-1">
-                <div class="textlabel">
-                    <h1>Recommended!!</h1>
-                </div>
-            </div>
-            <div class="musicdiv col-5 row-3">
-                <h1>nummer title</h1>
-                <p><b>Maker:</b> maker name</p>
-                <p><b>Gevoel:</b> gevoelens</p>
-            </div>
-            <div class="musicdiv col-5 row-3"></div>
-            <div class="musicdiv col-5 row-3"></div>
+    <div class="grid">
+        <div class="leftSide box">
+            <div class="titleBar"><h1>opgeslagen</h1></div>
+            <div class="fillBox" id="fillSaved"></div>
         </div>
+        <div class="rightSide box">
+            <div class="titleBar"><h1>new</h1></div>
+            <div class="fillBox" id="fillNew"></div>
+        </div>
+        <iframe class="playBar box" src="control.html" frameborder="0"></iframe>
     </div>
 </body>
 

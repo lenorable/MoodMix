@@ -17,7 +17,12 @@ public class ContextListner implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         // PersistenceManager; // dit wordt om later de functies voor opslaan en gaan te roepen
 
+        // Gebruiker.alleGebruikers = null;
+
         System.out.println("starting application");
+
+        PersistenceManager.loadUsers();
+        PersistenceManager.loadMusic();
 
         Gevoel happy = new Gevoel("happy");
         Gevoel sad = new Gevoel("sad");
@@ -27,23 +32,18 @@ public class ContextListner implements ServletContextListener {
         Gevoel focues = new Gevoel("focues");
         Gevoel euphoric = new Gevoel("euphoric");
 
-        Gebruiker test1 = new Gebruiker("lenorable", "admin");
-        Gebruiker test2 = new Gebruiker("nyr", "hacker");
+        
+        // ArrayList<Nummer> n1 = new ArrayList<Nummer>();
+        // n1.add(testNum1);
 
-        ArrayList<Gevoel> gevoelensList = new ArrayList<Gevoel>();
-        gevoelensList.add(euphoric);
-        gevoelensList.add(happy);
-        gevoelensList.add(inspired);
-
-        Nummer testNum1 = new Nummer("Inspiration", "unknownbrain", 3.06, "file:///C://home/MoodMixMusic/inspiration_unknownBrain.mp3", gevoelensList);
-        ArrayList<Nummer> n1 = new ArrayList<Nummer>();
-        n1.add(testNum1);
-
-        PersistenceManager.saveMusic(n1);
+        // PersistenceManager.saveMusic(n1);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("stopping application");
+
+        PersistenceManager.saveUsers();
+        PersistenceManager.saveMusic();
     }
 }

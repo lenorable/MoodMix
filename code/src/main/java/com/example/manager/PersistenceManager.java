@@ -1,5 +1,6 @@
 package com.example.manager;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -8,51 +9,68 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.example.model.Gebruiker;
 import com.example.model.Nummer;
 
 public class PersistenceManager {
+    // saving user's (1)
+    public static void loadUsers() {
+        try {
+            Path userStorage = Path.of("/home/MoodMixMusic/user.obj");
 
-    public static ArrayList<Nummer> updateMusicList(ArrayList<Nummer> listnum){
-        ArrayList<Nummer> loadedList = loadMusic();
-        
-        for (Nummer song : listnum) {
-            loadedList.add(song);
+            InputStream is = Files.newInputStream(userStorage);
+            ObjectInputStream ois = new ObjectInputStream(is);
+
+            Gebruiker.alleGebruikers = (ArrayList<Gebruiker>) ois.readObject();
+
+            ois.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        return loadedList;
     }
 
-    public static ArrayList<Nummer> updateMusicListSingle(Nummer num){
-        ArrayList<Nummer> loadedList = loadMusic();
-        loadedList.add(num);
-        return loadedList;
+    public static void saveUsers() {
+        try {
+            ArrayList<Gebruiker> users = Gebruiker.alleGebruikers;
+
+            OutputStream os = Files.newOutputStream(Path.of("/home/MoodMixMusic/user.obj"));
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+
+            oos.writeObject(users);
+            System.out.println("saving users");
+
+            oos.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static ArrayList<Nummer> loadMusic() {
+    // saving music (2)
+    public static void loadMusic() {
         try {
             Path songStorage = Path.of("/home/song.obj");
 
             InputStream is = Files.newInputStream(songStorage);
             ObjectInputStream ois = new ObjectInputStream(is);
 
-            ArrayList<Nummer> music = (ArrayList<Nummer>) ois.readObject();
+            Nummer.nummers =  (ArrayList<Nummer>) ois.readObject();
 
             ois.close();
-            return music;
+        } catch (IOException e){
+            e.printStackTrace();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        return null;
     }
 
-    public static void saveMusic(ArrayList<Nummer> nummers) {
+    public static void saveMusic() {
         try {
             OutputStream os = Files.newOutputStream(Path.of("/home/song.obj"));
             ObjectOutputStream oos = new ObjectOutputStream(os);
-
-            oos.writeObject(nummers);
+            
+            oos.writeObject(Nummer.nummers);
             oos.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

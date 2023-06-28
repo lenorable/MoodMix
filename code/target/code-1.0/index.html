@@ -7,22 +7,17 @@
 
     <title>MoodMix</title>
     <link rel="stylesheet" href="basic.css">
-    <link rel="stylesheet" href="specific/index/index.css">
-    <script src="specific/index/index.js"></script>
+    <link rel="stylesheet" href="styling/index.css">
+    <!-- <script src="specific/recommended/recommended.js" type="module"></script> -->
+    <script src="specific/login/login.js" type="module"></script>
 
-    <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
 </head>
 
 <body>
-    <div class="grid">
-        <div class="quizdiv" role="form">
-            <div class="inputBox"><label>energy</label><div class="smallBox"><p>low</p><input type="range" id="EnergyRangeId" class="slider"><p>high</p></div></div>
-            <div class="inputBox"><label>consentration</label><div class="smallBox"><p>low</p><input type="range" id="ConsentrationRangeId"><p>high</p></div></div>
-            <div class="inputBox"><label>happiness</label><div class="smallBox"><p>low</p><input type="range" id="HappinessRangeId"><p>high</p></div></div>
-            <div class="inputBox"><label>intenisty</label><div class="smallBox"><p>low</p><input type="range" id="IntensityRangeId"><p>high</p></div></div>
-        </div>
-    </div>
+        <iframe class="mainBox box" src="recommended.html" frameborder="0"></iframe>
+        <iframe class="playBar box" src="control.html" frameborder="0"></iframe>
 </body>
 
 </html>

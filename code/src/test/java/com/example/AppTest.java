@@ -27,35 +27,47 @@ public class AppTest
     // @Test
     // public void makeSongObj()
     // {
-    //     Gevoel happy = new Gevoel("happy");
-    //     Gevoel sad = new Gevoel("sad");
-    //     Gevoel relaxed = new Gevoel("relaxed");
-    //     Gevoel inspired = new Gevoel("inspired");
-    //     Gevoel romantic = new Gevoel("romantic");
-    //     Gevoel focues = new Gevoel("focues");
-    //     Gevoel euphoric = new Gevoel("euphoric");
+    //     ArrayList<String> gevoelensList = new ArrayList<String>();
+    //     gevoelensList.add("euphoric");
+    //     gevoelensList.add("happy");
+    //     gevoelensList.add("inspired");
 
-    //     ArrayList<Gevoel> gevoelensList = new ArrayList<Gevoel>();
-    //     gevoelensList.add(euphoric);
-    //     gevoelensList.add(happy);
-    //     gevoelensList.add(inspired);
+    //     Nummer testNum1 = new Nummer("Inspiration", "unknownbrain", 3.06, "music/inspiration_unknownBrain.mp3", gevoelensList);
 
-    //     Nummer testNum1 = new Nummer("Inspiration", "unknownbrain", 3.06, "Unknown Brain - Inspiration (feat. Aviella) [NCS Release].mp3", gevoelensList);
-    //     ArrayList<Nummer> n1 = new ArrayList<Nummer>();
-    //     n1.add(testNum1);
-    //     PersistenceManager.saveMusic(n1);
+    //     gevoelensList = new ArrayList<String>();
+    //     gevoelensList.add("sad");
+    //     gevoelensList.add("relaxed");
+
+    //     Nummer testNum2 = new Nummer("Let it die", "unown", 3.06, "music/LetItDie.mp3", gevoelensList);
+
+    //     gevoelensList = new ArrayList<String>();
+    //     gevoelensList.add("romantic");
+    //     gevoelensList.add("happy");
+    //     gevoelensList.add("inspired");
+
+    //     Nummer testNum3 = new Nummer("Monody", "unknwon", 3.06, "music/Monody.mp3", gevoelensList);
+
+    //     gevoelensList = new ArrayList<String>();
+    //     gevoelensList.add("focus");
+    //     gevoelensList.add("relaxed");
+    //     gevoelensList.add("inspired");
+    
+    //     Nummer testNum4 = new Nummer("Mice on venus", "Minecraft", 3.06, "music/MiceOnVenus.mp3", gevoelensList);
+
+
+    //     System.out.println(Nummer.nummers);
+    //     PersistenceManager.saveMusic();
     // }
 
-    @Test
-    public void loadsong()
-    {
-        ArrayList<Nummer> songs = PersistenceManager.loadMusic();
+    // @Test
+    // public void loadsong()
+    // {
+    //     PersistenceManager.loadMusic();
 
-        System.out.println(Gevoel.alleGevoelens);
+    //     System.out.println(Nummer.nummers);
 
-        // System.out.println(songs);
-        // for (Nummer nummer : songs) {
-        //     System.out.println(nummer.getGevoelens());
-        // }
-    }
+    //     for (Nummer nummer : Nummer.nummers) {
+    //         System.out.println(nummer.getBestandNaam());
+    //     }
+    // }
 }

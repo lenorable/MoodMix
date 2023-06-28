@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-NL">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lenor Hofschreuder" />
+
+    <title>MoodMix</title>
+    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="specific/quiz/quiz.css">
+    <script src="specific/quiz/quiz.js" type="module"></script>
+    <script src="specific/login/login.js" type="module"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="quizdiv" role="form">
+            <div class="inputBox"><label>energy</label><div class="smallBox"><p>low</p><input type="range" id="EnergyRangeId" class="slider"><p>high</p></div></div>
+            <div class="inputBox"><label>consentration</label><div class="smallBox"><p>low</p><input type="range" id="ConsentrationRangeId"><p>high</p></div></div>
+            <div class="inputBox"><label>happiness</label><div class="smallBox"><p>low</p><input type="range" id="HappinessRangeId"><p>high</p></div></div>
+            <div class="inputBox"><label>intenisty</label><div class="smallBox"><p>low</p><input type="range" id="IntensityRangeId"><p>high</p></div></div>
+            <div class="inputBox" style="padding-top: 10px;"><button class="goButton" onclick="sendGevoelens()">GO!</button></div>
+        </div>
+    </div>
+</body>
+
+</html>

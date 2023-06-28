@@ -10,17 +10,23 @@ import java.util.Calendar;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 import org.postgresql.Driver;
 
+import com.example.listner.MySecurityContext;
+import com.example.manager.AuthorizationFilter;
 import com.example.model.Gebruiker;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
@@ -98,17 +104,40 @@ public class AuthenticationResource {
 
             ResultSet resultSet = statement.executeQuery(query);
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return Response.status(409).build();
             } else {
-                query = " INSERT INTO moodmixusers (username, password, email) VALUES ('" + req.username + "', '" + req.password + "', '" + req.email + "');";
+                Gebruiker user = new Gebruiker(req.username, "user");
+                query = " INSERT INTO moodmixusers (username, password, email) VALUES ('" + req.username + "', '"
+                        + req.password + "', '" + req.email + "');";
                 statement.execute(query);
-                Gebruiker user = new Gebruiker(req.username, req.password);
                 return login(req);
             }
 
         } catch (SQLException e) {
             return Response.status(503, e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(500, e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/check")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response checkUser(@Context SecurityContext sc) {
+        try {
+            Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+            System.out.println(gebruiker.getRole());
+
+            if(sc.isUserInRole("user")){
+                return Response.ok(Map.of("msg", "true")).build();
+            } else {
+                return Response.ok(Map.of("msg", "false")).build();
+            }
+        } catch (NullPointerException e){
+            return Response.ok(Map.of("msg", "false")).build();
         } catch (Exception e) {
             return Response.status(500, e.getMessage()).build();
         }

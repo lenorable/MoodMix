@@ -1,9 +1,10 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Playlist {
+public class Playlist implements Serializable{
     private Gebruiker maker;
     private String naam;
     private List<Nummer> nummers = new ArrayList<Nummer>();

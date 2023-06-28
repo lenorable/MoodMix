@@ -11,15 +11,19 @@ public class Nummer implements Serializable{
     private String maker;
     private double lengte; //dit kan mis als local time? kom ik later op terug! 
     private String bestandnaam; //dit kan worden omgezet naar path?
-    private List<Gevoel> gevoelens;
+    private ArrayList<String> gevoelens;
 
-    public Nummer(String naam, String maker, double lengte, String bestandnaam, List<Gevoel> gevoelens) {
+    public static ArrayList<Nummer> nummers = new ArrayList<Nummer>();
+
+    public Nummer(String naam, String maker, double lengte, String bestandnaam, ArrayList<String> gevoelens) {
         this.naam = naam;
         this.maker = maker;
         this.lengte = lengte;
         this.bestandnaam = bestandnaam;
         this.gevoelens = gevoelens;
-        // PersistenceManager.saveMusic(PersistenceManager.updateMusicListSingle(this)); //adding this number to the existing list and saving it
+
+        nummers.add(this);
+        System.out.println(nummers);
     }
 
     public String getNaam() {
@@ -34,7 +38,7 @@ public class Nummer implements Serializable{
         return lengte;
     }
 
-    public List<Gevoel> getGevoelens() {
+    public ArrayList<String> getGevoelens() {
         return gevoelens;
     }
 

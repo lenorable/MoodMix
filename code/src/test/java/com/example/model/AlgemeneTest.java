@@ -2,21 +2,76 @@ package com.example.model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 public class AlgemeneTest {
-    Gevoel v1 = new Gevoel("Blij");
-    Gevoel v2 = new Gevoel("Boos");
 
-    Gebruiker g1 = new Gebruiker("lenorable", "user");
+    @Test 
+    public void alleGebruikers(){
+        System.out.println("starting");
+        for (Gebruiker user : Gebruiker.alleGebruikers) {
+            System.out.println(user.getGebruikerNaam());
+        }
+    }
 
-    Playlist p1 = new Playlist(g1, "coolste playlist");
+    @Test
+    public void load(){
+        try {
+            Path userStorage = Path.of("/home/MoodMixMusic/user.obj");
 
-    ArrayList<Gevoel> gl1 = new ArrayList<Gevoel>();
+            InputStream is = Files.newInputStream(userStorage);
+            ObjectInputStream ois = new ObjectInputStream(is);
 
-    Bericht b1 = new Bericht("luister dit nummer!", 0, g1);
+            ArrayList<Gebruiker> test = (ArrayList<Gebruiker>) ois.readObject();
+            // System.out.println(ois.readObject());
+
+            for (Gebruiker user : test) {
+                System.out.println(user.getGebruikerNaam() + " " + user.getRole());
+            }
+
+            ois.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // @Test
+    // public void save(){
+    //     try {
+    //         Gebruiker tester = new Gebruiker("hackerTest", "default");
+
+    //         ArrayList<Gebruiker> users = Gebruiker.alleGebruikers;
+
+    //         OutputStream os = Files.newOutputStream(Path.of("/home/MoodMixMusic/user.obj"));
+    //         ObjectOutputStream oos = new ObjectOutputStream(os);
+
+    //         oos.writeObject(users);
+
+    //         oos.close();
+    //     } catch (IOException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    // }
+
+    // Gevoel v1 = new Gevoel("Blij");
+    // Gevoel v2 = new Gevoel("Boos");
+
+    // Gebruiker g1 = new Gebruiker("lenorable", "user");
+
+    // Playlist p1 = new Playlist(g1, "coolste playlist");
+
+    // ArrayList<Gevoel> gl1 = new ArrayList<Gevoel>();
+
+    // Bericht b1 = new Bericht("luister dit nummer!", 0, g1);
 
     // @Test
     // public void shouldPass() {

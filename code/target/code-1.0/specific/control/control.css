@@ -73,3 +73,14 @@
     height: 10%;
     width: 80%;
 }
+
+/* miniplayer */
+@media screen and (max-height: 300px) { 
+    .infodiv{
+        display: none;
+    }
+
+    .volsliderdiv{
+        display: none;
+    }
+}

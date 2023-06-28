@@ -8,6 +8,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    -webkit-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
 }
 
 .inputBox{
@@ -49,6 +53,11 @@
 
 .smallBox * {
     margin: 2%;
+}
+
+.goButton {
+    width: 40%;
+    height: 100%;
 }
 
 /* phone */

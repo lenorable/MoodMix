@@ -1,10 +1,6 @@
-function checkBeckEndCon(){
-    fetch("restservices/music", {
-        method: "GET",
-        headers: {"Authorization" : localStorage.getItem("myToken")}
-    })
-        .then(response => console.log(response["ok"]))
-}
+import GevoelensService from "../../services/gevoelens-service.js";
+
+let gevoelService = new GevoelensService();
 
 function quizResult(){ //proty type. weet nog niet of ik dit zo ga houden
     var energy = document.getElementById("EnergyRangeId").value;
@@ -67,7 +63,13 @@ function quizResult(){ //proty type. weet nog niet of ik dit zo ga houden
         index += 1;
     });
 
-    localStorage.setItem("feeling", product); //nu nog voor eeuwig?
-
     return product;
+}
+
+window.sendGevoelens = function sendGevoelens(){
+    let data = {
+        "gevoelens" : quizResult()
+    };
+
+    console.log(gevoelService.saveGevoel(data));
 }

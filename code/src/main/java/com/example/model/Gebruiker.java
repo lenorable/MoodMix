@@ -1,23 +1,27 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Gebruiker implements Principal{
+public class Gebruiker implements Serializable, Principal{
     private String gebruikerNaam;
-    private List<Playlist> playlists = new ArrayList<Playlist>();
-    private List<Bericht> berichten = new ArrayList<Bericht>();
-
     private String role;
 
-    public static List<Gebruiker> alleGebruikers = new ArrayList<>();
+    private Setting settings;
+
+    private List<Playlist> playlists = new ArrayList<Playlist>();
+    private List<Bericht> berichten = new ArrayList<Bericht>();
+    
+    public static ArrayList<Gebruiker> alleGebruikers = new ArrayList<>();
 
     public Gebruiker(String gebruikerNaam, String role){
         this.gebruikerNaam = gebruikerNaam;
 
         this.role = role;
+        this.settings = new Setting();
 
         alleGebruikers.add(this);
     }
@@ -30,16 +34,20 @@ public class Gebruiker implements Principal{
         return gebruikerNaam;
     }
 
+    public String getRole(){
+        return role;
+    }
+
+    public Setting getSetting(){
+        return this.settings;
+    }
+
     public List<Playlist> getPlaylists() {
         return playlists;
     }
 
     public List<Bericht> getBerichten() {
         return berichten;
-    }
-
-    public String getRole(){
-        return role;
     }
 
     public String addPlaylists(Playlist playlist){

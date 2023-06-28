@@ -1,0 +1,20 @@
+.box {
+    background-color: rgba(0, 0, 0, 0);
+    /* overflow: auto; */
+}
+
+.mainBox{
+    position: fixed;
+    height: 82.34vh;
+    width: 100%;
+    left: 0%;
+    top: 0%;
+}
+
+.playBar{
+    position: fixed;
+    height: 17.66vh;
+    width: 100%;
+    left: 0%;
+    bottom: 0%;
+}
