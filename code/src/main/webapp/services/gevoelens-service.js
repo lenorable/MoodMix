@@ -1,7 +1,7 @@
 export default class GevoelensService {
 
     async saveGevoel(data) {
-        let resp = await fetch("restservices/settings", {
+        let resp = await fetch("/restservices/settings", {
             method: "POST",
             headers: {
                 "Authorization": window.localStorage.getItem("myToken"),
@@ -11,7 +11,7 @@ export default class GevoelensService {
         })
 
         if (resp.status == 200){
-            return await resp.json().then(jsonResp => {window.location.href = "./recommended.html";});
+            return await resp.json().then(jsonResp => {window.location.href = "/index.html";});
         } else {
             console.error("something when wrong, code: " + resp.status); //dit heeft zo ver ik me nu kan bedenken geen nut
         }

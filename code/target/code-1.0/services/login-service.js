@@ -6,7 +6,7 @@ export default class LoginService {
             "password": document.getElementById("passwordid").value
         };
 
-        let resp = await fetch("restservices/login", {
+        let resp = await fetch("/restservices/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export default class LoginService {
         })
 
         if (resp.status == 200){
-            return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "./quiz.html";});
+            return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "/quiz.html";});
         } else {
             console.error("something when wrong, code: " + resp.status);
         }
@@ -28,7 +28,7 @@ export default class LoginService {
             "email": document.getElementById("emailid").value
         };
 
-        let resp = await fetch("restservices/login/new", {
+        let resp = await fetch("/restservices/login/new", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -37,14 +37,14 @@ export default class LoginService {
         })
 
         if (resp.status == 200){
-            return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "./quiz.html";});
+            return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "/quiz.html";});
         } else {
             console.error("something when wrong, code: " + resp.status);
         }
     }
 
     async validate(){
-        let resp = await fetch("restservices/login/check", {
+        let resp = await fetch("/restservices/login/check", {
             method: "GET",
             headers: {
                 "Authorization": window.localStorage.getItem("myToken"),

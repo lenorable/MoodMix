@@ -1,7 +1,7 @@
 export default class MusicService {
 
     async findNewMusicQue() {
-        let resp = await fetch("restservices/music", {
+        let resp = await fetch("/restservices/music", {
             method: "GET",
             headers: {
                 "Authorization": window.localStorage.getItem("myToken"),
@@ -17,7 +17,7 @@ export default class MusicService {
     }
 
     async findNewMusic() {
-        let resp = await fetch("restservices/music/recommend", {
+        let resp = await fetch("/restservices/music/recommend", {
             method: "GET",
             headers: {
                 "Authorization": window.localStorage.getItem("myToken"),

@@ -4,7 +4,9 @@ com\example\manager\PersistenceManager.class
 com\example\manager\AuthorizationFilter.class
 com\example\webservices\loginRequest.class
 com\example\webservices\MusicResource.class
+com\example\webservices\SettingResource.class
 com\example\manager\ConfigServer.class
+com\example\webservices\GevoelRequest.class
 com\example\model\Gebruiker.class
 com\example\model\Bericht.class
 com\example\listner\MySecurityContext.class

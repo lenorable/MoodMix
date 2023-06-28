@@ -1,4 +1,4 @@
-import LoginService from "../../services/login-service.js";
+import LoginService from "../services/login-service.js";
 
 let loginService = new LoginService();
 
@@ -37,7 +37,7 @@ try {
 
 window.logout = function logout() {
     localStorage.removeItem("myToken");
-    window.location.href = "./login.html"
+    window.location.href = "/login.html"
 }
 
 window.isLoggedIn = function isLoggedIn() {
@@ -53,11 +53,11 @@ window.checkLogin = async function checkLogin() {
     if (resp.msg == "true") {
         if (window.location.href.endsWith("login.html")){
             alert("you're already logged in.");
-            window.location.href = "./quiz.html";
+            window.location.href = "/quiz.html";
         }
     } else {
         if (window.location.href.endsWith("login.html") == false){
-            window.location.href = "./login.html";
+            window.location.href = "/login.html";
         }
     }
 }

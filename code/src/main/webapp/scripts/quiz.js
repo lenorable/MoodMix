@@ -1,4 +1,4 @@
-import GevoelensService from "../../services/gevoelens-service.js";
+import GevoelensService from "../services/gevoelens-service.js";
 
 let gevoelService = new GevoelensService();
 
