@@ -12,16 +12,25 @@ public class Gebruiker implements Serializable, Principal{
 
     private Setting settings;
 
-    private List<Playlist> playlists = new ArrayList<Playlist>();
-    private List<Bericht> berichten = new ArrayList<Bericht>();
+    private List<Playlist> playlists; //hier gaat wat fout shit
+    // private List<Bericht> berichten = new ArrayList<Bericht>();
     
-    public static ArrayList<Gebruiker> alleGebruikers = new ArrayList<>();
+    public static ArrayList<Gebruiker> alleGebruikers;
 
     public Gebruiker(String gebruikerNaam, String role){
         this.gebruikerNaam = gebruikerNaam;
 
         this.role = role;
         this.settings = new Setting();
+
+        playlists = new ArrayList<Playlist>();
+
+        System.out.println(alleGebruikers);
+
+        if (alleGebruikers == null){
+            System.out.println(alleGebruikers == null);
+            alleGebruikers = new ArrayList<Gebruiker>();
+        }
 
         alleGebruikers.add(this);
     }
@@ -46,9 +55,9 @@ public class Gebruiker implements Serializable, Principal{
         return playlists;
     }
 
-    public List<Bericht> getBerichten() {
-        return berichten;
-    }
+    // public List<Bericht> getBerichten() {
+    //     return berichten;
+    // }
 
     public String addPlaylists(Playlist playlist){
         try {
@@ -59,13 +68,13 @@ public class Gebruiker implements Serializable, Principal{
         }
     }
 
-    public String addBericht(Bericht post){
-        try {
-            berichten.add(post);
-            return "succes!";
-        } catch (Exception e){
-            return e.getMessage();
-        }
-    }
+    // public String addBericht(Bericht post){
+    //     try {
+    //         berichten.add(post);
+    //         return "succes!";
+    //     } catch (Exception e){
+    //         return e.getMessage();
+    //     }
+    // }
 }
 

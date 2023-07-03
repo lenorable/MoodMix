@@ -38,10 +38,16 @@ public class PersistenceManager {
             OutputStream os = Files.newOutputStream(Path.of("/home/MoodMixMusic/user.obj"));
             ObjectOutputStream oos = new ObjectOutputStream(os);
 
+            System.out.println("really saving: " + users);
+
+            for (Gebruiker gebruiker : users) {
+                System.out.println(gebruiker.getPlaylists());
+            }
+
             oos.writeObject(users);
-            System.out.println("saving users");
 
             oos.close();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -55,10 +61,10 @@ public class PersistenceManager {
             InputStream is = Files.newInputStream(songStorage);
             ObjectInputStream ois = new ObjectInputStream(is);
 
-            Nummer.nummers =  (ArrayList<Nummer>) ois.readObject();
+            Nummer.nummers = (ArrayList<Nummer>) ois.readObject();
 
             ois.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -67,11 +73,14 @@ public class PersistenceManager {
 
     public static void saveMusic() {
         try {
+            ArrayList<Nummer> nummers = Nummer.nummers;
+
             OutputStream os = Files.newOutputStream(Path.of("/home/song.obj"));
             ObjectOutputStream oos = new ObjectOutputStream(os);
-            
+
             oos.writeObject(Nummer.nummers);
             oos.close();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

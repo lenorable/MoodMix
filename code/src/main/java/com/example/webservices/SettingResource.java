@@ -7,6 +7,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -52,4 +53,54 @@ public class SettingResource {
             return Response.status(500, e.getMessage()).build();
         }
     }
+
+    @GET
+    @Path("/que")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getQue(@Context SecurityContext sc){
+        try {
+            Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+            return Response.ok(Map.of("msg", gebruiker.getSetting().getQue())).build();
+        } catch (Exception e) {
+            return Response.status(500, e.getMessage()).build();
+        }
+    }
+
+    @POST
+    @Path("/que")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setQueItem(@Context SecurityContext sc, String bestandNaam){
+        try {
+            Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+            gebruiker.getSetting().setQueItem(bestandNaam);
+
+            return Response.ok(Map.of("msg", "gelukt")).build();
+        } catch (Exception e) {
+            return Response.status(500, e.getMessage()).build();
+        }
+    }
+
+    @PUT
+    @Path("/que")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response resetQue(@Context SecurityContext sc){
+        try {
+            Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+            gebruiker.getSetting().resetQue();
+
+            return Response.ok(Map.of("msg", "gelukt")).build();
+        } catch (Exception e) {
+            return Response.status(500, e.getMessage()).build();
+        }
+    }
+
 }

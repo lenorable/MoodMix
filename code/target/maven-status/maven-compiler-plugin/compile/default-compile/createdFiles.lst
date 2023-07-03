@@ -1,5 +1,6 @@
 com\example\webservices\ReqGevoel.class
 com\example\webservices\AuthenticationResource.class
+com\example\webservices\PlaylistReq.class
 com\example\manager\PersistenceManager.class
 com\example\manager\AuthorizationFilter.class
 com\example\webservices\loginRequest.class
@@ -8,6 +9,7 @@ com\example\webservices\SettingResource.class
 com\example\manager\ConfigServer.class
 com\example\webservices\GevoelRequest.class
 com\example\model\Gebruiker.class
+com\example\webservices\playlistRecource.class
 com\example\model\Bericht.class
 com\example\listner\MySecurityContext.class
 com\example\model\Gevoel.class

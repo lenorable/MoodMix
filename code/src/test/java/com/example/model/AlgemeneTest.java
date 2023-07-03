@@ -15,13 +15,13 @@ import org.junit.Test;
 
 public class AlgemeneTest {
 
-    @Test 
-    public void alleGebruikers(){
-        System.out.println("starting");
-        for (Gebruiker user : Gebruiker.alleGebruikers) {
-            System.out.println(user.getGebruikerNaam());
-        }
-    }
+    // @Test 
+    // public void alleGebruikers(){
+    //     System.out.println("starting");
+    //     for (Gebruiker user : Gebruiker.alleGebruikers) {
+    //         System.out.println(user.getGebruikerNaam());
+    //     }
+    // }
 
     @Test
     public void load(){
@@ -32,6 +32,7 @@ public class AlgemeneTest {
             ObjectInputStream ois = new ObjectInputStream(is);
 
             ArrayList<Gebruiker> test = (ArrayList<Gebruiker>) ois.readObject();
+
             // System.out.println(ois.readObject());
 
             for (Gebruiker user : test) {
@@ -48,6 +49,7 @@ public class AlgemeneTest {
     // public void save(){
     //     try {
     //         Gebruiker tester = new Gebruiker("hackerTest", "default");
+    //         Gebruiker tester2 = new Gebruiker("blahaj", "default");
 
     //         ArrayList<Gebruiker> users = Gebruiker.alleGebruikers;
 

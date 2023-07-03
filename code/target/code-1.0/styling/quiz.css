@@ -67,16 +67,9 @@
     }
 }
 
-/* tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) { 
+/* PC or laptop */
+@media screen and (min-width: 768px) { 
     .quizdiv{
         grid-column: 4/10;
-    }
-}
-
-/* PC or laptop */
-@media screen and (min-width: 1024px) { 
-    .quizdiv{
-        grid-column: 5/9;
     }
 }

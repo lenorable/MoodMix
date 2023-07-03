@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebListener;
 
 import com.example.manager.PersistenceManager;
 import com.example.model.Gebruiker;
-import com.example.model.Gevoel;
+// import com.example.model.Gevoel;
 import com.example.model.Nummer;
 
 @WebListener
@@ -23,15 +23,6 @@ public class ContextListner implements ServletContextListener {
 
         PersistenceManager.loadUsers();
         PersistenceManager.loadMusic();
-
-        Gevoel happy = new Gevoel("happy");
-        Gevoel sad = new Gevoel("sad");
-        Gevoel relaxed = new Gevoel("relaxed");
-        Gevoel inspired = new Gevoel("inspired");
-        Gevoel romantic = new Gevoel("romantic");
-        Gevoel focues = new Gevoel("focues");
-        Gevoel euphoric = new Gevoel("euphoric");
-
         
         // ArrayList<Nummer> n1 = new ArrayList<Nummer>();
         // n1.add(testNum1);

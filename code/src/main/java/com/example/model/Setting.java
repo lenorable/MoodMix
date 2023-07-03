@@ -9,7 +9,7 @@ public class Setting implements Serializable{
     private String theme;
     private ArrayList<String> gevoelens;
 
-    private ArrayList<Nummer> que;
+    private ArrayList<String> que;
 
     // private ?? lastlogin
 
@@ -27,12 +27,12 @@ public class Setting implements Serializable{
     }
 
     public void resetQue(){
-        this.que = null;
+        this.que = new ArrayList<String>();
     }
 
-    public void setQueItem(Nummer nummer){
+    public void setQueItem(String nummer){
         if (this.que == null){
-            que = new ArrayList<Nummer>();
+            que = new ArrayList<String>();
         }
 
         this.que.add(nummer);
@@ -51,17 +51,7 @@ public class Setting implements Serializable{
         return this.gevoelens;
     }
 
-    public ArrayList<Nummer> getQue(){
+    public ArrayList<String> getQue(){
         return this.que;
-    }
-
-    public ArrayList<String> getQueUrls(){
-        ArrayList<String> urls = new ArrayList<String>();
-
-        for (Nummer nummer : this.que) {
-            urls.add(nummer.getBestandNaam());
-        }
-
-        return urls;
     }
 }

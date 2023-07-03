@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../basic.css">
     <link rel="stylesheet" href="styling/control.css">
     <script src="scripts/control.js" type="module"></script>
-    <!-- <script src="../scripts/music.js" type="module"></script> volgensmij is deze onzin -->
 
     <script src="https://kit.fontawesome.com/76fa0e805d.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Barlow&effect=outline' rel='stylesheet'>
@@ -20,7 +19,10 @@
         <div class="controlbody">
             <div class="infodiv"></div>
             <div class="controlButtonsdiv">
-                <button onclick="togglePause(this)"><i class='fa-solid fa-play'></i></button>
+                <button onclick="toggleSize(this)" name="controlSizeButton"></button>
+                <button onclick=""><i class="fa-solid fa-backward"></i></button>
+                <button onclick="togglePause()" id="togglePause"><i class='fa-solid fa-play'></i></button>
+                <button onclick=""><i class="fa-solid fa-forward"></i></button>
                 <button onclick="loopSong(this)"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
             </div>
             <div class="volsliderdiv">

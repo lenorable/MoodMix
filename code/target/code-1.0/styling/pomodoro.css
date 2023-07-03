@@ -1,0 +1,52 @@
+.sessionForm{
+    background-color: rgb(149, 173, 117);
+    grid-row: 2/12;
+    border-radius: 10vh;
+    overflow: hidden;
+
+    -webkit-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* phone */
+@media screen and (max-width: 767px) { 
+    .sessionForm{
+        grid-column: 2/12;
+    }
+}
+
+/* PC or laptop */
+@media screen and (min-width: 768px) { 
+    .sessionForm{
+        grid-column: 4/10;
+    }
+}
+
+.inputContainer{
+    background-color: rgba(0, 0, 0, 0);
+    height: 10%;
+    width: 100%;
+
+    margin: 2.5% 0px 2.5% 0px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.inputContainer input[type="submit"]{
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border-radius: 50vh;
+    z-index: 2;
+    overflow: hidden;
+    border: none;
+    padding: 10px;
+    height: 50px;
+    font-size: large;
+}

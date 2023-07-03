@@ -1,8 +1,3 @@
-/* html {
-    height: 100%;
-    width: 100%;
-} */
-
 body {
     background-color: #FEE5B6;
 }
@@ -12,6 +7,10 @@ body * {
     transition-timing-function: ease-in-out;
 
     font-family: 'Barlow'
+}
+
+h1 {
+    pointer-events: none;
 }
 
 .grid {
@@ -42,6 +41,14 @@ input:focus {
 }
 
 input:hover {
+    transform: scale(1.1);
+}
+
+textarea:focus {
+    transform: scale(1.1);
+}
+
+textarea:hover {
     transform: scale(1.1);
 }
 
@@ -85,4 +92,40 @@ input[type="range"]::-moz-range-thumb {
     aspect-ratio: 1/1;
     background: rgb(149, 173, 117);
     cursor: pointer;
+}
+
+/* dropdown styling */
+.rightClickMenu{
+    position: fixed;
+    z-index: 9999;
+
+    background-color: rgba(240, 204, 169, 0.5);
+    width: 20%;
+    height: 20%;
+
+    transition-duration: 0s;
+
+    /* display: none; */
+    flex-direction: column;
+
+    border-radius: 4vh;
+    backdrop-filter: blur(10px);
+}
+
+.rightClickMenu button:not(.hitBox){
+    background-color: rgb(149, 173, 117);
+    height: 40%;
+    margin: 5%;
+    font-size: large;
+}
+
+.hitBox{
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
 }

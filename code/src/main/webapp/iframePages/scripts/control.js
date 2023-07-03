@@ -1,39 +1,62 @@
 var globalSong = null;
 
 import MusicService from "../../services/music-service.js";
+import QueService from "../../services/que-service.js";
 
 const musicService = new MusicService();
+const queService = new QueService();
 
-window.addEventListener("load",  start());
+window.addEventListener("resize", sizeButton(document.querySelector("[name='controlSizeButton']")));
 
-async function start(){
-    // let que = await musicService.findNewMusicQue();
-    // que = que.urls
-    // loadMusic(que[0])  
-}
+window.loadMusic = async function loadMusic(path) {
 
-window.loadMusic = async function loadMusic(path){
-    globalSong = new Audio(path); //setting the song to play now
-
-    // await globalSong.play(); //waiting for it to start playing
-    // pause = false; //setting the pause value to false bacause its playing 
-
-    console.log(globalSong.duration) //getting the duration of the song
-}
-
-window.togglePause = function togglePause(element){
-    if (globalSong.paused){
-        globalSong.play();
-        element.innerHTML = "<i class='fa-solid fa-pause'></i>";
-    } else {
+    if (globalSong != null && globalSong.play){ //zodat je niet 2 nummers door elkaar heen hoort
         globalSong.pause();
-        element.innerHTML = "<i class='fa-solid fa-play'></i>";
     }
 
+    globalSong = new Audio(path); //setting the song to play now
+
+    //voor het geval dat het op een andere manier wordt gepauzeert wil ik toch het knopje kunnen aanpassen
+    globalSong.addEventListener("play", () => {let element = document.getElementById("togglePause"); element.innerHTML = "<i class='fa-solid fa-pause'></i>" });
+    globalSong.addEventListener("pause", () => {let element = document.getElementById("togglePause"); element.innerHTML = "<i class='fa-solid fa-play'></i>" });
+
+    globalSong.play()
+
+    globalSong.addEventListener("ended", () => {nextQueItem()});
 }
 
-window.loopSong = function loopSong(element){
-    if (globalSong.loop){
+function sizeButton(element) {
+    if (window.innerHeight <= 300) {
+        element.innerHTML = "<i class='fa-solid fa-maximize'></i>";
+    } else {
+        element.innerHTML = "<i class='fa-solid fa-minimize'></i>";
+    }
+}
+
+window.toggleSize = function toggleSize(element) {
+    if (parent.window.location.href.endsWith("control.html")) {
+        alert("cant preform this action here");
+    } else {
+        if (window.innerHeight <= 300) {
+            parent.document.querySelector(".playBar").style.height = "100%";
+        } else {
+            parent.document.querySelector(".playBar").style.height = "17.66vh";
+        }
+    }
+
+    setTimeout(function () { sizeButton(element) }, 500)
+}
+
+window.togglePause = function togglePause() {
+    if (globalSong.paused) {
+        globalSong.play();
+    } else {
+        globalSong.pause();
+    }
+}
+
+window.loopSong = function loopSong(element) {
+    if (globalSong.loop) {
         globalSong.loop = false;
         element.innerHTML = '<i class="fa-solid fa-arrow-right-arrow-left"></i>';
     } else {
@@ -42,8 +65,25 @@ window.loopSong = function loopSong(element){
     }
 }
 
-window.songVolume = function songVolume(element){
+window.songVolume = function songVolume(element) {
     var sound = element.value;
     sound = sound * 0.01;
     globalSong.volume = sound;
+}
+
+window.getQue = async function getQue() {
+    console.log(await queService.getQue())
+}
+
+window.resetQue = async function resetQue() {
+    localStorage.setItem("queItem", 0);
+    console.log(queService.resetQue())
+}
+
+window.nextQueItem = async function nextQueItem() {
+    localStorage.setItem("queItem", (parseInt(localStorage.getItem("queItem")) + 1));
+    let index = localStorage.getItem("queItem");
+
+    let que = await queService.getQue();
+    loadMusic(que.msg[index])
 }

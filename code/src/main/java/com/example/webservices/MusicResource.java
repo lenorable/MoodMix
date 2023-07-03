@@ -17,7 +17,7 @@ import javax.ws.rs.core.SecurityContext;
 
 import com.example.manager.PersistenceManager;
 import com.example.model.Gebruiker;
-import com.example.model.Gevoel;
+// import com.example.model.Gevoel;
 import com.example.model.Nummer;
 
 class ReqGevoel {
@@ -26,29 +26,29 @@ class ReqGevoel {
 
 @Path("/music")
 public class MusicResource {
-    @GET
-    @RolesAllowed("user")
-    @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response giveSongs(@Context SecurityContext sc) {
-        Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+    // @GET
+    // @RolesAllowed("user")
+    // @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public Response giveSongs(@Context SecurityContext sc) {
+    //     Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
 
-        gebruiker.getSetting().resetQue();
+    //     gebruiker.getSetting().resetQue();
 
-        System.out.println(gebruiker.getSetting().getGevoelens());
+    //     System.out.println(gebruiker.getSetting().getGevoelens());
 
-        for (Nummer nummer : Nummer.nummers) {
-            for (String gevoel : nummer.getGevoelens()) {
-                if (gebruiker.getSetting().getGevoelens().contains(gevoel)){
-                    gebruiker.getSetting().setQueItem(nummer);
-                    break;
-                }
-            }
+    //     for (Nummer nummer : Nummer.nummers) {
+    //         for (String gevoel : nummer.getGevoelens()) {
+    //             if (gebruiker.getSetting().getGevoelens().contains(gevoel)){
+    //                 gebruiker.getSetting().setQueItem(nummer);
+    //                 break;
+    //             }
+    //         }
             
-        }
+    //     }
 
-        return Response.ok(Map.of("urls", gebruiker.getSetting().getQueUrls())).build();
-    }
+    //     return Response.ok(Map.of("urls", gebruiker.getSetting().getQueUrls())).build();
+    // }
 
     @GET
     @Path("/recommend")
@@ -57,7 +57,7 @@ public class MusicResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSongs(@Context SecurityContext sc) {
         Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
-
+        
         ArrayList<Map> songs = new ArrayList<Map>();
 
         for (Nummer nummer : Nummer.nummers) {

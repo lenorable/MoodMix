@@ -7,6 +7,8 @@
 
     <title>MM recommended</title>
     <link rel="stylesheet" href="../basic.css">
+    <script src="../scripts/dropdown.js" type="module"></script>
+
     <link rel="stylesheet" href="styling/recommended.css">
     <script src="scripts/recommended.js" type="module"></script>
 
@@ -15,16 +17,28 @@
 </head>
 
 <body>
+    <div class="rightClickMenu" id="rightClickMenu">
+        <button class="hitBox" id="trigger"></button>
+        <button id="buttonID" onclick="upperWindowGetAllPlaylists()"><i class="fa-solid fa-floppy-disk"></i> add to playlist</button>
+        <button id="buttonID" onclick="addToQue()"><i class="fa-solid fa-list-ul"></i> add to queue</button>
+    </div>
+
     <div class="grid">
         <div class="leftSide box">
             <div class="titleBar"><h1>opgeslagen</h1></div>
             <div class="fillBox" id="fillSaved"></div>
         </div>
         <div class="rightSide box">
-            <div class="titleBar"><h1>new</h1></div>
+            <div class="titleBar">
+                <div class="titleDiv"><input type="search"></div>
+                <h1>new</h1>
+                <div class="titleDiv">
+                    <button><i class="fa-solid fa-message"></i></button>
+                    <button><i class="fa-solid fa-list"></i></button>
+                </div>
+            </div>
             <div class="fillBox" id="fillNew"></div>
         </div>
-        <iframe class="playBar box" src="control.html" frameborder="0"></iframe>
     </div>
 </body>
 

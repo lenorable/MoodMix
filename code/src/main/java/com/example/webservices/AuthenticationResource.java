@@ -129,8 +129,6 @@ public class AuthenticationResource {
         try {
             Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
 
-            System.out.println(gebruiker.getRole());
-
             if(sc.isUserInRole("user")){
                 return Response.ok(Map.of("msg", "true")).build();
             } else {
