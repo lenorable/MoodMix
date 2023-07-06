@@ -19,6 +19,7 @@ import com.example.manager.PersistenceManager;
 import com.example.model.Gebruiker;
 // import com.example.model.Gevoel;
 import com.example.model.Nummer;
+import com.example.model.Playlist;
 
 class ReqGevoel {
     public ArrayList<String> reqGevoel;
@@ -69,6 +70,44 @@ public class MusicResource {
             }
             
         }
+
+        return Response.ok(Map.of("urls", songs)).build();
+    }
+
+    @GET
+    @Path("/saved")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSavedSongs(@Context SecurityContext sc) {
+        Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+        
+        ArrayList<Map> songs = new ArrayList<Map>();
+
+        for (Playlist playlist : gebruiker.getPlaylists()) {
+            for (String nummerName : playlist.getNummers()) {
+                for (Nummer nummer : Nummer.nummers) {
+                    if (nummer.getBestandNaam().equals(nummerName)){
+                        for (String gevoel : nummer.getGevoelens()) {
+                            if (gebruiker.getSetting().getGevoelens().contains(gevoel)){
+                                songs.add(Map.of("naam", nummer.getNaam(), "url", nummer.getBestandNaam()));
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // for (Nummer nummer : Nummer.nummers) {
+        //     for (String gevoel : nummer.getGevoelens()) {
+        //         if (gebruiker.getSetting().getGevoelens().contains(gevoel)){
+        //             songs.add(Map.of("naam", nummer.getNaam(), "url", nummer.getBestandNaam()));
+        //             break;
+        //         }
+        //     }
+            
+        // }
 
         return Response.ok(Map.of("urls", songs)).build();
     }

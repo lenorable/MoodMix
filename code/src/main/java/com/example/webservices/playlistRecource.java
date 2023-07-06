@@ -77,8 +77,8 @@ public class playlistRecource {
                 for (Nummer nummer : Nummer.nummers) {
                     if (nummer.getBestandNaam().equals(req.bestandNaam)) {
 
-                        if (playlist.getNummers().contains(nummer.getBestandNaam())){
-                            return Response.status(449, "song already in playlist").build(); 
+                        if (playlist.getNummers().contains(nummer.getBestandNaam())) {
+                            return Response.status(449, "song already in playlist").build();
                         } else {
                             playlist.addNummer(nummer.getBestandNaam());
                             return Response.ok(Map.of("msg", "song added")).build();
@@ -92,5 +92,49 @@ public class playlistRecource {
         }
 
         return Response.status(449, "playlist doesn't exists").build();
+    }
+
+    @GET
+    @Path("/moreinfo")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllPlaylist(@Context SecurityContext sc) {
+        Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+        ArrayList<Map> playlists = new ArrayList<Map>();
+
+        for (Playlist playList : gebruiker.getPlaylists()) {
+            playlists.add(Map.of("naam", playList.getNaam(), "sum", playList.getSum()));
+        }
+
+        return Response.ok(Map.of("msg", playlists)).build();
+    }
+
+    @POST
+    @Path("/songs")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllPlaylistSongs(@Context SecurityContext sc, String playlistName) {
+        Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
+
+        ArrayList<Map> nummerInfo = new ArrayList<Map>();
+
+        for (Playlist playList : gebruiker.getPlaylists()) {
+            if (playList.getNaam().equals(playlistName)) {
+
+                for (String nummerBestand : playList.getNummers()) {
+                    for (Nummer nummer : Nummer.nummers) {
+                        if (nummer.getBestandNaam().equals(nummerBestand)) {
+                            nummerInfo.add(Map.of("naam", nummer.getNaam(), "url", nummer.getBestandNaam()));
+                        }
+                    }
+                }
+                return Response.ok(Map.of("msg", nummerInfo)).build();
+            }
+        }
+
+        return Response.status(404, "niet gevonden").build();
     }
 }

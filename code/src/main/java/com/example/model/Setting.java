@@ -11,7 +11,19 @@ public class Setting implements Serializable{
 
     private ArrayList<String> que;
 
+    private int workTime;
+    private int sortPauseTime;
+    private int longPauseTime;
+
     // private ?? lastlogin
+
+    public int getLongPauseTime() {
+        return longPauseTime;
+    }
+
+    public void setLongPauseTime(int longPauseTime) {
+        this.longPauseTime = longPauseTime;
+    }
 
     public Setting() {
         this.volume = 1;
@@ -53,5 +65,21 @@ public class Setting implements Serializable{
 
     public ArrayList<String> getQue(){
         return this.que;
+    }
+
+    public int getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(int workTime) {
+        this.workTime = workTime;
+    }
+
+    public int getSortPauseTime() {
+        return sortPauseTime;
+    }
+
+    public void setSortPauseTime(int sortPauseTime) {
+        this.sortPauseTime = sortPauseTime;
     }
 }

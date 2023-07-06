@@ -66,4 +66,59 @@ export default class QueService {
             console.error("something when wrong, code: " + resp.status);
         }
     }
+
+    async pomodoro(work, shortP, longP){
+        let data = {
+            "work" : work,
+            "shortP" : shortP, 
+            "longP" : longP
+        }
+
+        let resp = await fetch("/restservices/settings/pomoset", {
+            method: "POST",
+            headers: {
+                "Authorization": window.localStorage.getItem("myToken"),
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        })
+
+        if (resp.status == 200){
+            return await resp.json();
+        } else {
+            console.error("something when wrong, code: " + resp.status);
+        }
+    }
+
+    async pomodoroGetTiming(){
+        let resp = await fetch("/restservices/settings/pomoset", {
+            method: "GET",
+            headers: {
+                "Authorization": window.localStorage.getItem("myToken"),
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (resp.status == 200){
+            return await resp.json();
+        } else {
+            console.error("something when wrong, code: " + resp.status);
+        }
+    }
+
+    async startPomodoro(){
+        let resp = await fetch("/restservices/settings/que/pomo", {
+            method: "GET",
+            headers: {
+                "Authorization": window.localStorage.getItem("myToken"),
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (resp.status == 200){
+            return await resp.json();
+        } else {
+            console.error("something when wrong, code: " + resp.status);
+        }
+    }
 }

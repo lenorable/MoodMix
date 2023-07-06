@@ -25,16 +25,16 @@
 
     <div class="grid">
         <div class="leftSide box">
-            <div class="titleBar"><h1>opgeslagen</h1></div>
+            <div class="titleBar"><div class="titleDiv"><button onclick="parent.logout()"><i class="fa-solid fa-right-from-bracket"></i></button></div><h1>opgeslagen</h1><div class="titleDiv"></div></div>
             <div class="fillBox" id="fillSaved"></div>
         </div>
         <div class="rightSide box">
             <div class="titleBar">
-                <div class="titleDiv"><input type="search"></div>
+                <div class="titleDiv"><input type="search" placeholder="zoek..." onchange="searchSong(this)"></div>
                 <h1>new</h1>
                 <div class="titleDiv">
-                    <button><i class="fa-solid fa-message"></i></button>
-                    <button><i class="fa-solid fa-list"></i></button>
+                    <button id="pomodoroKnop"><i class="fa-solid fa-stopwatch"></i></button>
+                    <button id="playlistWidnowOpen"><i class="fa-solid fa-list"></i></button>
                 </div>
             </div>
             <div class="fillBox" id="fillNew"></div>

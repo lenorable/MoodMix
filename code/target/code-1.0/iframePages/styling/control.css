@@ -37,6 +37,11 @@
     height: 15%;
 }
 
+.controlButtonsdiv .bigButton{
+    width: 50%;
+    border-radius: 5vh;
+}
+
 .controlButtonsdiv button{
     background-color: rgb(149, 173, 117);
     position: relative;

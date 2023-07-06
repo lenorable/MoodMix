@@ -18,10 +18,10 @@
 <body>
     <div class="grid">
         <form class="sessionForm">
-            <div class="inputContainer"><label>short work time</label><input type="number"></div>
-            <div class="inputContainer"><label>short brake time</label><input type="number"></div>
-            <div class="inputContainer"><label>long brake time</label><input type="number"></div>
-            <div class="inputContainer"><input type="submit"></div>
+            <div class="inputContainer"><label>work time (min)</label><input type="number" value="20" id="workTime"></div>
+            <div class="inputContainer"><label>short brake time (min)</label><input type="number" value="5" id="shortPauseTime"></div>
+            <div class="inputContainer"><label>long brake time (min)</label><input type="number" value="20" id="longPauseTime"></div>
+            <div class="inputContainer"><input type="button" value="Go back" onclick="history.back()"><input type="submit"></div>
         </form>
     </div>
 </body>

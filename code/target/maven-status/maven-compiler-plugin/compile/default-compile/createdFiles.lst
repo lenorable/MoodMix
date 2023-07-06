@@ -12,7 +12,6 @@ com\example\model\Gebruiker.class
 com\example\webservices\playlistRecource.class
 com\example\model\Bericht.class
 com\example\listner\MySecurityContext.class
-com\example\model\Gevoel.class
 com\example\model\Nummer.class
 com\example\listner\ContextListner.class
 com\example\model\Playlist.class

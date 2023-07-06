@@ -16,6 +16,8 @@ export default class LoginService {
 
         if (resp.status == 200){
             return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "/quiz.html";});
+        } else if (resp.status == 406){
+            alert("uw gegevens zijn onjuist");
         } else {
             console.error("something when wrong, code: " + resp.status);
         }
@@ -38,6 +40,8 @@ export default class LoginService {
 
         if (resp.status == 200){
             return await resp.json().then(jsonResp => {localStorage.setItem("myToken", jsonResp.token);  window.location.href = "/quiz.html";});
+        } else if (resp.status == 409){
+            alert("gebruikers naam niet beschrikbaar")
         } else {
             console.error("something when wrong, code: " + resp.status);
         }

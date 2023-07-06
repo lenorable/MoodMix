@@ -31,4 +31,20 @@ export default class MusicService {
             console.error("something when wrong, code: " + resp.status);
         }
     }
+
+    async findSavedMusic() {
+        let resp = await fetch("/restservices/music/saved", {
+            method: "GET",
+            headers: {
+                "Authorization": window.localStorage.getItem("myToken"),
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (resp.status == 200){
+            return await resp.json();
+        } else {
+            console.error("something when wrong, code: " + resp.status);
+        }
+    }
 }

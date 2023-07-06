@@ -1,0 +1,134 @@
+.playListSongs{
+    background-color: rgb(149, 173, 117);
+    grid-row: 2/12;
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: center;
+    border-radius: 10vh;
+    overflow: auto;
+
+    z-index: 2;
+    overflow: hidden;
+
+    -webkit-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+    box-shadow: 10px 10px 20px 0px rgba(107, 120, 87, 1);
+}
+
+/* phone */
+@media screen and (max-width: 767px) { 
+    .playListSongs{
+        grid-column: 2/12;
+    }
+
+    .hitBox2{
+        width: 100%;
+    }
+}
+
+/* PC or laptop */
+@media screen and (min-width: 768px) { 
+    .playListSongs{
+        grid-column: 4/10;
+    }
+
+    .hitBox2{
+        width: 72%;
+    }
+}
+
+.menuDiv{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.menuDiv button{
+    background-color: rgb(149, 173, 117);
+    position: relative;
+    border-radius: 5vh;
+    z-index: 2;
+    overflow: hidden;
+    border: none;
+    padding: 0px;
+    height: 50px;
+    width: 20%;
+    float: none;
+    margin: 2.5%;
+    font-size: large;
+    cursor: pointer;
+}
+
+.playlistsBox{
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    left: 0px;
+    top: 10%;
+
+    margin: 0px;
+    padding: 0px;
+    border: none;
+
+    width: 100%;
+    height: 90%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.playlistBox{
+    background-color: rgba(0, 0, 0, 0);
+
+    height: 20vh;
+    aspect-ratio: 1.5/1;
+    margin: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 2px solid black;
+}
+
+.playlistBoxTitle{
+    background-color: rgba(0, 0, 0, 0);
+
+    height: 20%;
+    width: 100%;
+
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.playlistBoxSum{
+    background-color: rgba(0, 0, 0, 0);
+
+    height: 80%;
+    width: 100%;
+
+    font-size: 2vh;
+    text-align: left;
+}
+
+.playListSongs button{
+    height: 10%;
+    width: 80%;
+    margin: 2.5%;
+}
+
+.hitBox2{
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
