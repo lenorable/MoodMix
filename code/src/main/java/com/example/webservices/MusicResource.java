@@ -27,29 +27,48 @@ class ReqGevoel {
 
 @Path("/music")
 public class MusicResource {
-    // @GET
-    // @RolesAllowed("user")
-    // @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response giveSongs(@Context SecurityContext sc) {
-    //     Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
 
-    //     gebruiker.getSetting().resetQue();
+    @GET
+    @Path("/create")
+    @RolesAllowed("user")
+    @Consumes(MediaType.APPLICATION_JSON) // alleen als je paramameters of iets in die richting op vraag lmao?
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createSongs(@Context SecurityContext sc) {
+        Gebruiker gebruiker = (Gebruiker) sc.getUserPrincipal();
 
-    //     System.out.println(gebruiker.getSetting().getGevoelens());
+        ArrayList<String> gevoelensList = new ArrayList<String>();
+        gevoelensList.add("euphoric");
+        gevoelensList.add("happy");
+        gevoelensList.add("inspired");
 
-    //     for (Nummer nummer : Nummer.nummers) {
-    //         for (String gevoel : nummer.getGevoelens()) {
-    //             if (gebruiker.getSetting().getGevoelens().contains(gevoel)){
-    //                 gebruiker.getSetting().setQueItem(nummer);
-    //                 break;
-    //             }
-    //         }
-            
-    //     }
+        Nummer testNum1 = new Nummer("Inspiration", "unknownbrain", 3.06, "/music/inspiration_unknownBrain.mp3", gevoelensList);
 
-    //     return Response.ok(Map.of("urls", gebruiker.getSetting().getQueUrls())).build();
-    // }
+        gevoelensList = new ArrayList<String>();
+        gevoelensList.add("sad");
+        gevoelensList.add("relaxed");
+
+        Nummer testNum2 = new Nummer("Let it die", "unown", 3.06, "/music/LetItDie.mp3", gevoelensList);
+
+        gevoelensList = new ArrayList<String>();
+        gevoelensList.add("romantic");
+        gevoelensList.add("happy");
+        gevoelensList.add("inspired");
+
+        Nummer testNum3 = new Nummer("Monody", "unknwon", 3.06, "/music/Monody.mp3", gevoelensList);
+
+        gevoelensList = new ArrayList<String>();
+        gevoelensList.add("focus");
+        gevoelensList.add("relaxed");
+        gevoelensList.add("inspired");
+    
+        Nummer testNum4 = new Nummer("Mice on venus", "Minecraft", 3.06, "/music/MiceOnVenus.mp3", gevoelensList);
+
+
+        System.out.println(Nummer.nummers);
+        // PersistenceManager.saveMusic();
+
+        return Response.ok(Map.of("msg", "ok")).build();
+    }
 
     @GET
     @Path("/recommend")

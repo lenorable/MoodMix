@@ -1,8 +1,14 @@
 import PlaylistService from "../services/playlist-service.js";
+import MusicService from "../services/music-service.js";
 
+let musicService = new MusicService
 let playlistService = new PlaylistService
 
 let bestandNaam = null;
+
+window.createSongs = async function createSongs(){
+    console.log(await musicService.createMusic());
+}
 
 window.setBestandsNaam = function setBestandsNaam(naam){
     bestandNaam = naam;

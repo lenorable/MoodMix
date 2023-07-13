@@ -41,9 +41,9 @@ class loginRequest {
 @Path("/login")
 public class AuthenticationResource {
     public static Key key = MacProvider.generateKey();
-    private String URL = "jdbc:postgresql://localhost:5432/MoodMix";
-    private String username = "postgres";
-    private String password = "k6LfYEIszD1cOP29qTvx";
+    private String URL = "jdbc:postgresql://server839881155.postgres.database.azure.com:5432/postgres";
+    private String username = "acidicDonkey8@server839881155";
+    private String password = "98f6ea00-f87a-4e90-99ca-c4c2b63caf9b";
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -57,7 +57,7 @@ public class AuthenticationResource {
 
             Statement statement = connection.createStatement();
 
-            String query = "SELECT password FROM MoodMixUsers WHERE username LIKE '" + req.username + "';";
+            String query = "SELECT password FROM moodmixusers WHERE username LIKE '" + req.username + "';";
             ResultSet resultSet = statement.executeQuery(query);
 
             String passDB;
